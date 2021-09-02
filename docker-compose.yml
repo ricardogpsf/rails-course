@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  printer-api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/api/
+      - tmp-cache:/api/tmp/cache
+    working_dir: /api/
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+
+  db:
+    image: mysql:5.7.21
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    expose:
+    # Opens port 3306 on the container
+      - "3306"
+    # Where our data will be persisted
+    volumes:
+      - db-data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  tmp-cache:
+  db-data:
