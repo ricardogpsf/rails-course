@@ -1,9 +1,10 @@
 class PrintersController < ApplicationController
   before_action :set_printer, only: %i[ show edit update destroy ]
+  before_action :set_organizations, only: [:new, :edit]
 
   # GET /printers or /printers.json
   def index
-    @printers = Printer.all
+    @printers = Printer.where(organization_id: params[:org_id])
   end
 
   # GET /printers/1 or /printers/1.json
@@ -62,8 +63,12 @@ class PrintersController < ApplicationController
       @printer = Printer.find(params[:id])
     end
 
+    def set_organizations
+      @organizations = Organization.active
+    end
+
     # Only allow a list of trusted parameters through.
     def printer_params
-      params.require(:printer).permit(:name, :description)
+      params.require(:printer).permit(:name, :description, :organization_id)
     end
 end

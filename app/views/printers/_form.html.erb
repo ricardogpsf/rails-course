@@ -21,6 +21,13 @@
     <%= form.text_area :description %>
   </div>
 
+  <div>
+    <%= form.label :organization %>
+    <%= form.collection_select(:organization_id, @organizations, :id, :name, prompt: true) %>
+  </div>
+
+  <br/>
+
   <div class="actions">
     <%= form.submit %>
   </div>
