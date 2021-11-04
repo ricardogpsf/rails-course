@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
-  active: false
+org_hp:
+  name: HP
+  description: HP organization
+  active: true
 
 two:
   name: MyString

@@ -2,7 +2,8 @@ require 'test_helper'
 
 class PrintersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @printer = printers(:one)
+    @printer = printers(:tatooine)
+    @org = organizations(:org_hp)
   end
 
   test "should get index" do
@@ -17,7 +18,7 @@ class PrintersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create printer" do
     assert_difference('Printer.count') do
-      post printers_url, params: { printer: { description: @printer.description, name: @printer.name } }
+      post printers_url, params: { printer: { description: @printer.description, name: @printer.name, organization_id: @org.id } }
     end
 
     assert_redirected_to printer_url(Printer.last)
@@ -34,7 +35,7 @@ class PrintersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update printer" do
-    patch printer_url(@printer), params: { printer: { description: @printer.description, name: @printer.name } }
+    patch printer_url(@printer), params: { printer: { description: @printer.description } }
     assert_redirected_to printer_url(@printer)
   end
 

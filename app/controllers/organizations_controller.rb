@@ -6,5 +6,7 @@ class OrganizationsController < ApplicationController
       format.html
       format.json { render json: @organizations }
     end
+
+    # render json: @organizations
   end
 end
