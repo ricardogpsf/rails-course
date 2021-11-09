@@ -24,7 +24,7 @@ class PrinterTest < ActiveSupport::TestCase
   end
 end
 
-# Class 6:
+# Class 6:  
 # New feature to be implemented: a printer must have a type and it should be one of two values: Tatooine or Crait.
 #
 # printer_type -> string, ['Tatooine', 'Crait']
