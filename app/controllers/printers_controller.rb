@@ -4,7 +4,11 @@ class PrintersController < ApplicationController
 
   # GET /printers or /printers.json
   def index
-    @printers = Printer.where(organization_id: params[:org_id])
+    if params[:org_id].present?
+      @printers = Printer.where(organization_id: params[:org_id])
+    else
+      @printers = Printer.all
+    end
   end
 
   # GET /printers/1 or /printers/1.json
